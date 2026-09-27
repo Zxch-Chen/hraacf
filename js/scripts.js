@@ -63,6 +63,7 @@
   $(window).scroll(navbarCollapse);
 
   // Published testimonies. Only repo maintainers add entries to js/testimonies.json.
+  // Bodies come from the public Substack RSS feed, not from a copy stored in the repo.
   var renderTestimony = function(item) {
     var $card = $('<article class="testimony-card"/>');
     $card.append($('<p class="testimony-meta"/>').text(item.author + ' · ' + item.date));
@@ -70,14 +71,28 @@
     if (item.subtitle) {
       $card.append($('<p class="testimony-subtitle"/>').text(item.subtitle));
     }
-    if (item.blurb) {
-      $card.append($('<p class="testimony-blurb"/>').text(item.blurb));
-    }
+    var $body = $('<div class="testimony-body"/>').text('Loading the post…');
+    $card.append($body);
     $card.append(
-      $('<a class="btn btn-primary btn-xl" target="_blank" rel="noopener noreferrer"/>')
-        .attr('href', item.url)
-        .text('Read on Substack')
+      $('<p class="testimony-source"/>').append(
+        $('<a target="_blank" rel="noopener noreferrer"/>')
+          .attr('href', item.url)
+          .text('Originally on Substack')
+      )
     );
+    $.getJSON('/api/substack', { url: item.url })
+      .done(function(data) {
+        if (data && data.html && window.DOMPurify) {
+          $body.html(window.DOMPurify.sanitize(data.html, { USE_PROFILES: { html: true } }));
+        } else {
+          $body.text('This post could not be loaded here.');
+        }
+      })
+      .fail(function() {
+        $body.empty().append(
+          $('<p/>').text('This post could not be loaded here. Open it on Substack instead.')
+        );
+      });
     return $card;
   };
 

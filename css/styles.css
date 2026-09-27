@@ -10141,7 +10141,7 @@ header.masthead h1 {
 }
 
 .testimony-list {
-  max-width: 720px;
+  max-width: 42rem;
   margin: 0 auto 4rem;
 }
 
@@ -10171,11 +10171,52 @@ header.masthead h1 {
 .testimony-subtitle {
   font-style: italic;
   color: #6c757d;
+  margin-bottom: 1.5rem;
+}
+
+.testimony-body {
+  color: #212529;
+  line-height: 1.7;
+}
+
+.testimony-body p,
+.testimony-body li {
   margin-bottom: 1rem;
 }
 
-.testimony-blurb {
-  margin-bottom: 1.5rem;
+.testimony-body h4 {
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+}
+
+.testimony-body blockquote {
+  border-left: 3px solid #5b71d3;
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  color: #343a40;
+}
+
+.testimony-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.testimony-body .footnote {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 1rem;
+}
+
+.testimony-source {
+  margin: 2rem 0 0;
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: 0.9rem;
+}
+
+.testimony-source a {
+  color: #5b71d3;
 }
 
 .testimony-form-wrap {
