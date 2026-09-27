@@ -1,27 +1,47 @@
 # HRAACF website
 
-Static site for [Harvard-Radcliffe Asian American Christian Fellowship](http://hraacf.org/).
+Static site for Harvard-Radcliffe Asian American Christian Fellowship.
 
-Push to `main` and Vercel publishes the change. No FileZilla.
+- **Live (Vercel):** https://hraacf.vercel.app
+- **GitHub:** https://github.com/Zxch-Chen/hraacf
+- **hraacf.org** still points at DreamHost until DNS is switched. Do not use FileZilla for this copy.
 
-## Edit the site
+Push to `main` and Vercel publishes in about a minute.
 
-1. Clone this repo (or open it on GitHub).
-2. Change text in `index.html`. Photos live in `assets/img/`. Styles are in `css/styles.css`.
-3. Commit and push to `main`.
+## Edit text (easiest)
 
-On GitHub you can also click **Edit** on `index.html`, change the text, and commit — Vercel deploys that too.
+1. Open [index.html on GitHub](https://github.com/Zxch-Chen/hraacf/blob/main/index.html).
+2. Click the pencil (Edit).
+3. Change the wording. Search the page for the sentence you want to update.
+4. Commit to `main`.
 
-## Local preview
+That is the whole publish step. No FTP.
 
-Open `index.html` in a browser, or from this folder:
+## Edit locally
 
 ```bash
+git clone https://github.com/Zxch-Chen/hraacf.git
+cd hraacf
 python3 -m http.server 8000
 ```
 
-Then visit http://localhost:8000
+Visit http://localhost:8000, edit `index.html` (photos in `assets/img/`, styles in `css/styles.css`), then:
 
-## Domain
+```bash
+git add -A
+git commit -m "Update upcoming events"
+git push
+```
 
-`hraacf.org` still points at DreamHost until DNS is switched to Vercel. The Vercel URL is the preview/production host until then.
+## Give others access
+
+On GitHub: **Settings → Collaborators → Add people**. They can then edit `index.html` the same way.
+
+On Vercel: the project is under Zach’s Hobby team. Transfer later if the fellowship wants its own Vercel/GitHub org.
+
+## Point hraacf.org here later
+
+1. In Vercel: Project → Settings → Domains → add `hraacf.org` and `www.hraacf.org`.
+2. In DreamHost DNS, set the records Vercel shows (usually an A record for the apex and a CNAME for `www`).
+3. Wait for DNS, then confirm https://hraacf.org loads this site (HTTPS works on Vercel; it does not on the current DreamHost setup).
+4. Leave DreamHost as registrar until you are sure. You can roll DNS back if needed.
