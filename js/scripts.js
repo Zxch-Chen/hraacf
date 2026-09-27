@@ -62,6 +62,48 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
+  // Published testimonies. Only repo maintainers add entries to js/testimonies.json.
+  var renderTestimony = function(item) {
+    var $card = $('<article class="testimony-card"/>');
+    $card.append($('<p class="testimony-meta"/>').text(item.author + ' · ' + item.date));
+    $card.append($('<h3 class="testimony-title"/>').text(item.title));
+    if (item.subtitle) {
+      $card.append($('<p class="testimony-subtitle"/>').text(item.subtitle));
+    }
+    if (item.blurb) {
+      $card.append($('<p class="testimony-blurb"/>').text(item.blurb));
+    }
+    $card.append(
+      $('<a class="btn btn-primary btn-xl" target="_blank" rel="noopener noreferrer"/>')
+        .attr('href', item.url)
+        .text('Read on Substack')
+    );
+    return $card;
+  };
+
+  $.getJSON('js/testimonies.json').done(function(items) {
+    if (!items || !items.length) {
+      return;
+    }
+    var $list = $('#testimony-list');
+    $list.empty();
+    $.each(items, function(_, item) {
+      $list.append(renderTestimony(item));
+    });
+  });
+
+  $('#testimony-form').on('submit', function(event) {
+    var url = ($('#testimony-url').val() || '').trim();
+    var $error = $('#testimony-form-error');
+    var isSubstack = /^https:\/\/([a-z0-9-]+\.)?substack\.com\//i.test(url);
+    if (!isSubstack) {
+      event.preventDefault();
+      $error.text('Please use a Substack URL (https://….substack.com/p/…).').prop('hidden', false);
+      return;
+    }
+    $error.prop('hidden', true);
+  });
+
   // Magnific popup calls
   $('#portfolio').magnificPopup({
     delegate: 'a',

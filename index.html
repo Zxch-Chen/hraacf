@@ -37,6 +37,7 @@
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#events">Events</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#testimonies">Testimonies</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Pictures</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
                 </ul>
@@ -164,6 +165,62 @@
             </p>
             <a class="btn btn-light btn-xl" target="_blank" rel="noopener noreferrer"
                 href="https://forms.gle/xWXjZHeeh5Q928MB6">Interest Form</a>
+        </div>
+    </section>
+    <!-- Testimonies -->
+    <section class="page-section" id="testimonies">
+        <div class="container">
+            <h2 class="text-center mt-0">Testimonies</h2>
+            <hr class="divider my-4" />
+            <p class="text-center mb-5">
+                Stories of faith from our community. Published pieces live here;
+                new ones appear after a maintainer reviews them.
+            </p>
+            <div id="testimony-list" class="testimony-list">
+                <article class="testimony-card">
+                    <p class="testimony-meta">Peter Chon · April 24, 2026</p>
+                    <h3 class="testimony-title">The Idolatry of Faith</h3>
+                    <p class="testimony-subtitle">Trusting in Jesus for our salvation</p>
+                    <p class="testimony-blurb">
+                        A personal testimony from AACF on resting in Christ, rather than
+                        in the strength of our own believing.
+                    </p>
+                    <a class="btn btn-primary btn-xl" target="_blank" rel="noopener noreferrer"
+                        href="https://peterchon.substack.com/p/the-idolatry-of-faith">Read on Substack</a>
+                </article>
+            </div>
+            <div class="testimony-form-wrap">
+                <h3 class="text-center">Share a testimony</h3>
+                <p class="text-center text-muted mb-4">
+                    Send a Substack link. It will not go live until it is reviewed and added.
+                </p>
+                <form id="testimony-form" action="https://formsubmit.co/zach.chen101@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="HRAACF testimony submission">
+                    <input type="hidden" name="_next" value="https://hraacf.vercel.app/#testimonies">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    <div class="form-group">
+                        <label for="testimony-name">Your name</label>
+                        <input class="form-control" id="testimony-name" name="name" type="text" required
+                            autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="testimony-url">Substack link</label>
+                        <input class="form-control" id="testimony-url" name="substack_url" type="url" required
+                            placeholder="https://someone.substack.com/p/your-piece"
+                            inputmode="url">
+                    </div>
+                    <div class="form-group">
+                        <label for="testimony-note">Note <span class="text-muted">(optional)</span></label>
+                        <textarea class="form-control" id="testimony-note" name="note" rows="3"
+                            placeholder="Anything we should know"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-xl" type="submit">Submit for review</button>
+                    </div>
+                    <p id="testimony-form-error" class="text-center text-danger mt-3 mb-0" hidden></p>
+                </form>
+            </div>
         </div>
     </section>
     <!-- Pictures -->

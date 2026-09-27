@@ -17,6 +17,23 @@ Push to `main` and Vercel publishes in about a minute.
 
 That is the whole publish step. No FTP.
 
+## Add a testimony (repo owner)
+
+Published testimonies are the list in [`js/testimonies.json`](https://github.com/Zxch-Chen/hraacf/blob/main/js/testimonies.json). Visitors can submit a Substack URL on the site; that emails Zach and does **not** publish until you add an object to that file and push.
+
+```json
+{
+  "title": "The Idolatry of Faith",
+  "author": "Peter Chon",
+  "date": "April 24, 2026",
+  "subtitle": "Trusting in Jesus for our salvation",
+  "blurb": "One or two sentences. Do not paste the full essay.",
+  "url": "https://peterchon.substack.com/p/the-idolatry-of-faith"
+}
+```
+
+The first form submit sends FormSubmit a confirmation email. Click that once.
+
 ## Edit locally
 
 ```bash

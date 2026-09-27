@@ -10139,3 +10139,63 @@ header.masthead h1 {
   margin-right: 10%;
   margin-left: 10%;
 }
+
+.testimony-list {
+  max-width: 720px;
+  margin: 0 auto 4rem;
+}
+
+.testimony-card {
+  background: #f8f9fa;
+  border-left: 4px solid #5b71d3;
+  padding: 2rem 2.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.testimony-meta {
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #5b71d3;
+  margin-bottom: 0.5rem;
+}
+
+.testimony-title {
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.testimony-subtitle {
+  font-style: italic;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.testimony-blurb {
+  margin-bottom: 1.5rem;
+}
+
+.testimony-form-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(91, 113, 211, 0.25);
+}
+
+.testimony-form-wrap .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.testimony-form-wrap label {
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.testimony-form-wrap .form-control {
+  border-radius: 0;
+  min-height: 3rem;
+}
