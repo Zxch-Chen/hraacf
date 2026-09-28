@@ -19,7 +19,7 @@ That is the whole publish step. No FTP.
 
 ## Add a testimony (repo owner)
 
-Published testimonies are the list in [`js/testimonies.json`](https://github.com/Zxch-Chen/hraacf/blob/main/js/testimonies.json). The site then loads the matching item from that Substack’s public RSS feed so people can read it on AACF. Visitors can still submit a URL; that emails Zach and does **not** publish until you add an object to the JSON file and push.
+Published testimonies are the list in [`js/testimonies.json`](https://github.com/Zxch-Chen/hraacf/blob/main/js/testimonies.json). The site then loads the matching item from that Substack’s public RSS feed **after someone opens it** so the catalog stays a list. Visitors can still submit a URL; that emails Zach and does **not** publish until you add an object to the JSON file and push.
 
 ```json
 {

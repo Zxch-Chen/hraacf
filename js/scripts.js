@@ -21,7 +21,8 @@
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
+      var hash = this.hash || '';
+      var target = hash.indexOf('#testimonies') === 0 ? $('#testimonies') : $(this.hash);
       target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
       if (target.length) {
         $('html, body').animate({
@@ -62,24 +63,42 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
-  // Published testimonies. Only repo maintainers add entries to js/testimonies.json.
-  // Bodies come from the public Substack RSS feed, not from a copy stored in the repo.
-  var renderTestimony = function(item) {
-    var $card = $('<article class="testimony-card"/>');
-    $card.append($('<p class="testimony-meta"/>').text(item.author + ' · ' + item.date));
-    $card.append($('<h3 class="testimony-title"/>').text(item.title));
-    if (item.subtitle) {
-      $card.append($('<p class="testimony-subtitle"/>').text(item.subtitle));
+  // Catalog first. The Substack RSS body loads only after someone opens a row.
+  var testimonies = [];
+
+  var slugFromUrl = function(url) {
+    var match = (url || '').match(/\/p\/([a-z0-9-]+)/i);
+    return match ? match[1] : '';
+  };
+
+  var testimonySlug = function() {
+    var hash = (location.hash || '').replace(/^#/, '');
+    var parts = hash.split('/');
+    if (parts[0] !== 'testimonies') {
+      return '';
     }
+    return parts[1] || '';
+  };
+
+  var renderTestimonyRow = function(item) {
+    var slug = slugFromUrl(item.url);
+    return $('<a class="testimony-row"/>')
+      .attr('href', '#testimonies/' + slug)
+      .append($('<span class="testimony-row-title"/>').text(item.title))
+      .append($('<span class="testimony-row-meta"/>').text(item.author + ' · ' + item.date));
+  };
+
+  var showTestimonyList = function() {
+    var $list = $('#testimony-list').empty().show();
+    $.each(testimonies, function(_, item) {
+      $list.append(renderTestimonyRow(item));
+    });
+    $('#testimony-detail').attr('hidden', true).empty();
+    $('.testimony-form-wrap').show();
+  };
+
+  var loadTestimonyBody = function(item) {
     var $body = $('<div class="testimony-body"/>').text('Loading the post…');
-    $card.append($body);
-    $card.append(
-      $('<p class="testimony-source"/>').append(
-        $('<a target="_blank" rel="noopener noreferrer"/>')
-          .attr('href', item.url)
-          .text('Originally on Substack')
-      )
-    );
     $.getJSON('/api/substack', { url: item.url })
       .done(function(data) {
         if (data && data.html && window.DOMPurify) {
@@ -93,19 +112,74 @@
           $('<p/>').text('This post could not be loaded here. Open it on Substack instead.')
         );
       });
-    return $card;
+    return $body;
+  };
+
+  var showTestimonyDetail = function(item) {
+    var $detail = $('#testimony-detail').empty().removeAttr('hidden');
+    $detail.append(
+      $('<p class="testimony-back"/>').append(
+        $('<a href="#testimonies"/>').text('← All testimonies')
+      )
+    );
+    $detail.append($('<p class="testimony-meta"/>').text(item.author + ' · ' + item.date));
+    $detail.append($('<h3 class="testimony-title"/>').text(item.title));
+    if (item.subtitle) {
+      $detail.append($('<p class="testimony-subtitle"/>').text(item.subtitle));
+    }
+    $detail.append(loadTestimonyBody(item));
+    $detail.append(
+      $('<p class="testimony-source"/>').append(
+        $('<a target="_blank" rel="noopener noreferrer"/>')
+          .attr('href', item.url)
+          .text('Originally on Substack')
+      )
+    );
+    $('#testimony-list').hide();
+    $('.testimony-form-wrap').hide();
+    var section = $('#testimonies');
+    if (section.length) {
+      $('html, body').animate({ scrollTop: section.offset().top - 72 }, 400);
+    }
+  };
+
+  var syncTestimonyView = function() {
+    if (!testimonies.length) {
+      return;
+    }
+    var slug = testimonySlug();
+    if (!slug) {
+      showTestimonyList();
+      return;
+    }
+    var match = null;
+    $.each(testimonies, function(_, item) {
+      if (slugFromUrl(item.url) === slug) {
+        match = item;
+        return false;
+      }
+    });
+    if (match) {
+      showTestimonyDetail(match);
+    } else {
+      showTestimonyList();
+    }
   };
 
   $.getJSON('js/testimonies.json').done(function(items) {
-    if (!items || !items.length) {
-      return;
-    }
-    var $list = $('#testimony-list');
-    $list.empty();
-    $.each(items, function(_, item) {
-      $list.append(renderTestimony(item));
-    });
+    testimonies = items || [];
+    syncTestimonyView();
   });
+
+  $('#testimony-list').on('click', 'a.testimony-row', function(event) {
+    event.preventDefault();
+    if (location.hash !== this.hash) {
+      history.pushState(null, '', this.hash);
+    }
+    syncTestimonyView();
+  });
+
+  $(window).on('hashchange popstate', syncTestimonyView);
 
   $('#testimony-form').on('submit', function(event) {
     var url = ($('#testimony-url').val() || '').trim();

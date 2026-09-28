@@ -10143,13 +10143,70 @@ header.masthead h1 {
 .testimony-list {
   max-width: 42rem;
   margin: 0 auto 4rem;
+  border: 1px solid rgba(91, 113, 211, 0.25);
 }
 
-.testimony-card {
+.testimony-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.15rem 1.35rem;
+  border-bottom: 1px solid rgba(91, 113, 211, 0.18);
+  color: #212529;
+  text-decoration: none;
+}
+
+.testimony-row:last-child {
+  border-bottom: 0;
+}
+
+.testimony-row:hover,
+.testimony-row:focus {
+  background: #f8f9fa;
+  color: #212529;
+  text-decoration: none;
+}
+
+.testimony-row-title {
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 700;
+}
+
+.testimony-row-meta {
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: 0.85rem;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .testimony-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .testimony-row-meta {
+    white-space: normal;
+  }
+}
+
+.testimony-detail {
+  max-width: 42rem;
+  margin: 0 auto 4rem;
   background: #f8f9fa;
   border-left: 4px solid #5b71d3;
   padding: 2rem 2.25rem;
-  margin-bottom: 1.5rem;
+}
+
+.testimony-back {
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.testimony-back a {
+  color: #5b71d3;
 }
 
 .testimony-meta {
