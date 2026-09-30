@@ -1,0 +1,301 @@
+#testimonies.testimonies-atelier {
+  --paper: #efe6d6;
+  --ink: #2c2418;
+  --ink-soft: rgba(44, 36, 24, 0.62);
+  --rule: rgba(44, 36, 24, 0.16);
+  --accent: #7a3e2a;
+  background:
+    radial-gradient(1200px 500px at 50% 0%, rgba(255, 248, 236, 0.7), transparent 70%),
+    var(--paper);
+  color: var(--ink);
+  padding-top: 7rem;
+  padding-bottom: 6rem;
+}
+
+#testimonies.testimonies-atelier .testimonies-inner {
+  max-width: 40rem;
+}
+
+.testimonies-kicker {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-soft);
+  margin-bottom: 0.75rem;
+}
+
+.testimonies-heading {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(3.2rem, 8vw, 5.4rem);
+  line-height: 0.9;
+  text-align: center;
+  margin: 0 0 1.5rem;
+  color: var(--ink);
+}
+
+.testimonies-heading::after {
+  content: "❧";
+  display: block;
+  font-style: normal;
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  margin-top: 1.15rem;
+  color: var(--ink-soft);
+}
+
+.testimonies-lede {
+  font-family: "Newsreader", "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.55;
+  text-align: center;
+  color: var(--ink-soft);
+  max-width: 28rem;
+  margin: 0 auto 3.25rem;
+}
+
+#testimonies.is-reading .testimonies-masthead {
+  display: none;
+}
+
+.testimony-list {
+  margin: 0 auto 4.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.testimony-row {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1.35rem 0.15rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.testimony-row:hover,
+.testimony-row:focus {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.testimony-row-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+.testimony-row-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.15;
+}
+
+.testimony-row-meta {
+  font-family: "Newsreader", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .testimony-row {
+    grid-template-columns: 2rem 1fr;
+  }
+
+  .testimony-row-meta {
+    grid-column: 2;
+    white-space: normal;
+  }
+}
+
+.testimony-detail {
+  margin: 0 auto 1rem;
+}
+
+.testimony-back {
+  font-family: "Newsreader", serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+}
+
+.testimony-back a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.testimony-back a::before {
+  content: "‹ ";
+}
+
+.testimony-meta {
+  font-family: "Newsreader", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.85rem;
+}
+
+.testimony-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+}
+
+.testimony-subtitle {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+}
+
+.testimony-body {
+  font-family: "Newsreader", "Times New Roman", serif;
+  font-optical-sizing: auto;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.testimony-body p,
+.testimony-body li {
+  margin-bottom: 1.15rem;
+}
+
+.testimony-body h4 {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1.45rem;
+  font-weight: 500;
+  margin: 2.4rem 0 0.85rem;
+}
+
+.testimony-body blockquote {
+  border-left: 1px solid var(--rule);
+  margin: 1.75rem 0;
+  padding: 0.15rem 0 0.15rem 1.15rem;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.testimony-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.testimony-body .footnote {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-top: 1.1rem;
+}
+
+.testimony-source {
+  margin: 3rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-family: "Newsreader", serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.testimony-source a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.testimony-form-wrap {
+  max-width: 26rem;
+  margin: 0 auto;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.testimonies-form-heading {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.testimonies-form-note {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  text-align: center;
+  color: var(--ink-soft);
+  margin-bottom: 1.75rem;
+}
+
+.testimony-form-wrap .form-group {
+  margin-bottom: 1.15rem;
+}
+
+.testimony-form-wrap label {
+  font-family: "Newsreader", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.testimony-form-wrap .form-control {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  box-shadow: none;
+  min-height: 2.6rem;
+  padding-left: 0;
+  color: var(--ink);
+  font-family: "Newsreader", serif;
+}
+
+.testimony-form-wrap .form-control:focus {
+  box-shadow: none;
+  border-color: var(--accent);
+}
+
+.testimony-form-wrap .form-control::placeholder {
+  color: rgba(44, 36, 24, 0.35);
+  font-style: italic;
+}
+
+.testimony-form-wrap .text-muted {
+  color: var(--ink-soft) !important;
+}
+
+.testimony-submit {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-family: "Newsreader", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.6rem;
+  margin-top: 0.5rem;
+}
+
+.testimony-submit:hover {
+  background: var(--ink);
+  color: var(--paper);
+}

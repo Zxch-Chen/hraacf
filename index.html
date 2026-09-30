@@ -15,11 +15,13 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
         rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Newsreader:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" rel="stylesheet" />
     <!-- Third party plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/testimonies.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -168,24 +170,27 @@
         </div>
     </section>
     <!-- Testimonies -->
-    <section class="page-section" id="testimonies">
-        <div class="container">
-            <h2 class="text-center mt-0">Testimonies</h2>
-            <hr class="divider my-4" />
-            <p class="text-center mb-5">
-                A collection of testimonies from our community. Open one to read it here.
-            </p>
+    <section class="page-section testimonies-atelier" id="testimonies">
+        <div class="container testimonies-inner">
+            <header class="testimonies-masthead">
+                <p class="testimonies-kicker">A gathering of witnesses</p>
+                <h2 class="testimonies-heading">Testimonies</h2>
+                <p class="testimonies-lede">
+                    A small index of faith, written in our community. Open a piece to read it here.
+                </p>
+            </header>
             <div id="testimony-list" class="testimony-list">
                 <a class="testimony-row" href="#testimonies/the-idolatry-of-faith">
+                    <span class="testimony-row-num">01</span>
                     <span class="testimony-row-title">The Idolatry of Faith</span>
                     <span class="testimony-row-meta">Peter Chon · April 24, 2026</span>
                 </a>
             </div>
             <div id="testimony-detail" class="testimony-detail" hidden></div>
             <div class="testimony-form-wrap">
-                <h3 class="text-center">Share a testimony</h3>
-                <p class="text-center text-muted mb-4">
-                    Send a Substack link. It will not go live until it is reviewed and added.
+                <h3 class="testimonies-form-heading">Leave a piece</h3>
+                <p class="testimonies-form-note">
+                    Send a Substack link. It waits here until it is reviewed.
                 </p>
                 <form id="testimony-form" action="https://formsubmit.co/zach.chen101@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="HRAACF testimony submission">
@@ -209,7 +214,7 @@
                             placeholder="Anything we should know"></textarea>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary btn-xl" type="submit">Submit for review</button>
+                        <button class="testimony-submit" type="submit">Submit for review</button>
                     </div>
                     <p id="testimony-form-error" class="text-center text-danger mt-3 mb-0" hidden></p>
                 </form>

@@ -80,21 +80,27 @@
     return parts[1] || '';
   };
 
-  var renderTestimonyRow = function(item) {
+  var renderTestimonyRow = function(item, index) {
     var slug = slugFromUrl(item.url);
+    var num = String(index + 1);
+    if (num.length < 2) {
+      num = '0' + num;
+    }
     return $('<a class="testimony-row"/>')
       .attr('href', '#testimonies/' + slug)
+      .append($('<span class="testimony-row-num"/>').text(num))
       .append($('<span class="testimony-row-title"/>').text(item.title))
       .append($('<span class="testimony-row-meta"/>').text(item.author + ' · ' + item.date));
   };
 
   var showTestimonyList = function() {
     var $list = $('#testimony-list').empty().show();
-    $.each(testimonies, function(_, item) {
-      $list.append(renderTestimonyRow(item));
+    $.each(testimonies, function(index, item) {
+      $list.append(renderTestimonyRow(item, index));
     });
     $('#testimony-detail').attr('hidden', true).empty();
     $('.testimony-form-wrap').show();
+    $('#testimonies').removeClass('is-reading');
   };
 
   var loadTestimonyBody = function(item) {
@@ -119,7 +125,7 @@
     var $detail = $('#testimony-detail').empty().removeAttr('hidden');
     $detail.append(
       $('<p class="testimony-back"/>').append(
-        $('<a href="#testimonies"/>').text('← All testimonies')
+        $('<a href="#testimonies"/>').text('Index')
       )
     );
     $detail.append($('<p class="testimony-meta"/>').text(item.author + ' · ' + item.date));
@@ -137,6 +143,7 @@
     );
     $('#testimony-list').hide();
     $('.testimony-form-wrap').hide();
+    $('#testimonies').addClass('is-reading');
     var section = $('#testimonies');
     if (section.length) {
       $('html, body').animate({ scrollTop: section.offset().top - 72 }, 400);
