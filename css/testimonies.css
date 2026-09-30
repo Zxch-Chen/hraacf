@@ -16,7 +16,7 @@
   max-width: 40rem;
 }
 
-.testimonies-kicker {
+#testimonies .testimonies-kicker {
   font-family: "Cormorant Garamond", "Times New Roman", serif;
   font-size: 0.8rem;
   letter-spacing: 0.28em;
@@ -26,7 +26,7 @@
   margin-bottom: 0.75rem;
 }
 
-.testimonies-heading {
+#testimonies .testimonies-heading {
   font-family: "Cormorant Garamond", "Times New Roman", serif;
   font-weight: 500;
   font-style: italic;
@@ -37,7 +37,7 @@
   color: var(--ink);
 }
 
-.testimonies-heading::after {
+#testimonies .testimonies-heading::after {
   content: "❧";
   display: block;
   font-style: normal;
@@ -47,7 +47,7 @@
   color: var(--ink-soft);
 }
 
-.testimonies-lede {
+#testimonies .testimonies-lede {
   font-family: "Newsreader", "Times New Roman", serif;
   font-size: 1.15rem;
   font-style: italic;
@@ -58,12 +58,12 @@
   margin: 0 auto 1.75rem;
 }
 
-.testimony-search {
+#testimonies .testimony-search {
   max-width: 26rem;
   margin: 0 auto 3.25rem;
 }
 
-.testimony-search label {
+#testimonies .testimony-search label {
   display: block;
   font-family: "Newsreader", serif;
   font-size: 0.78rem;
@@ -74,7 +74,7 @@
   margin-bottom: 0.35rem;
 }
 
-.testimony-search input {
+#testimonies .testimony-search input {
   width: 100%;
   background: transparent;
   border: 0;
@@ -89,16 +89,16 @@
   padding: 0.45rem 0 0.6rem;
 }
 
-.testimony-search input:focus {
+#testimonies .testimony-search input:focus {
   outline: 0;
   border-color: var(--accent);
 }
 
-.testimony-search input::placeholder {
+#testimonies .testimony-search input::placeholder {
   color: rgba(44, 36, 24, 0.32);
 }
 
-.testimony-search-status {
+#testimonies .testimony-search-status {
   font-family: "Newsreader", serif;
   font-style: italic;
   font-size: 0.95rem;
@@ -112,16 +112,16 @@
   display: none;
 }
 
-.testimony-list {
+#testimonies .testimony-list {
   margin: 0 auto 4.5rem;
   border-top: 1px solid var(--rule);
 }
 
-.testimony-list:empty {
+#testimonies .testimony-list:empty {
   border-top: 0;
 }
 
-.testimony-row {
+#testimonies .testimony-row {
   display: grid;
   grid-template-columns: 2.4rem 1fr auto;
   gap: 1rem;
@@ -132,20 +132,20 @@
   text-decoration: none;
 }
 
-.testimony-row:hover,
-.testimony-row:focus {
+#testimonies .testimony-row:hover,
+#testimonies .testimony-row:focus {
   color: var(--accent);
   text-decoration: none;
 }
 
-.testimony-row-num {
+#testimonies .testimony-row-num {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 1rem;
   color: var(--ink-soft);
 }
 
-.testimony-row-title {
+#testimonies .testimony-row-title {
   font-family: "Cormorant Garamond", serif;
   font-size: 1.65rem;
   font-weight: 500;
@@ -153,7 +153,7 @@
   line-height: 1.15;
 }
 
-.testimony-row-meta {
+#testimonies .testimony-row-meta {
   font-family: "Newsreader", serif;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
@@ -163,21 +163,21 @@
 }
 
 @media (max-width: 640px) {
-  .testimony-row {
+  #testimonies .testimony-row {
     grid-template-columns: 2rem 1fr;
   }
 
-  .testimony-row-meta {
+  #testimonies .testimony-row-meta {
     grid-column: 2;
     white-space: normal;
   }
 }
 
-.testimony-detail {
+#testimonies .testimony-detail {
   margin: 0 auto 1rem;
 }
 
-.testimony-back {
+#testimonies .testimony-back {
   font-family: "Newsreader", serif;
   font-size: 0.85rem;
   letter-spacing: 0.14em;
@@ -185,16 +185,16 @@
   margin-bottom: 2.5rem;
 }
 
-.testimony-back a {
+#testimonies .testimony-back a {
   color: var(--accent);
   text-decoration: none;
 }
 
-.testimony-back a::before {
+#testimonies .testimony-back a::before {
   content: "‹ ";
 }
 
-.testimony-meta {
+#testimonies .testimony-meta {
   font-family: "Newsreader", serif;
   font-size: 0.78rem;
   letter-spacing: 0.16em;
@@ -203,7 +203,7 @@
   margin-bottom: 0.85rem;
 }
 
-.testimony-title {
+#testimonies .testimony-title {
   font-family: "Cormorant Garamond", serif;
   font-weight: 500;
   font-style: italic;
@@ -212,7 +212,7 @@
   margin-bottom: 0.5rem;
 }
 
-.testimony-subtitle {
+#testimonies .testimony-subtitle {
   font-family: "Newsreader", serif;
   font-style: italic;
   font-size: 1.2rem;
@@ -220,7 +220,7 @@
   margin-bottom: 2.5rem;
 }
 
-.testimony-body {
+#testimonies .testimony-body {
   font-family: "Newsreader", "Times New Roman", serif;
   font-optical-sizing: auto;
   font-size: 1.125rem;
@@ -228,18 +228,18 @@
   color: var(--ink);
 }
 
-.testimony-body a {
+#testimonies .testimony-body a {
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid rgba(122, 62, 42, 0.28);
 }
 
-.testimony-body p,
-.testimony-body li {
+#testimonies .testimony-body p,
+#testimonies .testimony-body li {
   margin-bottom: 1.15rem;
 }
 
-.testimony-body h4 {
+#testimonies .testimony-body h4 {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 1.45rem;
@@ -247,7 +247,7 @@
   margin: 2.4rem 0 0.85rem;
 }
 
-.testimony-body blockquote {
+#testimonies .testimony-body blockquote {
   border-left: 1px solid var(--rule);
   margin: 1.75rem 0;
   padding: 0.15rem 0 0.15rem 1.15rem;
@@ -255,18 +255,18 @@
   color: var(--ink);
 }
 
-.testimony-body img {
+#testimonies .testimony-body img {
   max-width: 100%;
   height: auto;
 }
 
-.testimony-body .footnote {
+#testimonies .testimony-body .footnote {
   font-size: 0.92rem;
   color: var(--ink-soft);
   margin-top: 1.1rem;
 }
 
-.testimony-source {
+#testimonies .testimony-source {
   margin: 3rem 0 0;
   padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
@@ -276,19 +276,19 @@
   text-transform: uppercase;
 }
 
-.testimony-source a {
+#testimonies .testimony-source a {
   color: var(--accent);
   text-decoration: none;
 }
 
-.testimony-form-wrap {
+#testimonies .testimony-form-wrap {
   max-width: 26rem;
   margin: 0 auto;
   padding-top: 2.5rem;
   border-top: 1px solid var(--rule);
 }
 
-.testimonies-form-heading {
+#testimonies .testimonies-form-heading {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 500;
@@ -297,7 +297,7 @@
   margin-bottom: 0.5rem;
 }
 
-.testimonies-form-note {
+#testimonies .testimonies-form-note {
   font-family: "Newsreader", serif;
   font-style: italic;
   text-align: center;
@@ -305,11 +305,11 @@
   margin-bottom: 1.75rem;
 }
 
-.testimony-form-wrap .form-group {
+#testimonies .testimony-form-wrap .form-group {
   margin-bottom: 1.15rem;
 }
 
-.testimony-form-wrap label {
+#testimonies .testimony-form-wrap label {
   font-family: "Newsreader", serif;
   font-size: 0.78rem;
   letter-spacing: 0.12em;
@@ -317,7 +317,7 @@
   color: var(--ink-soft);
 }
 
-.testimony-form-wrap .form-control {
+#testimonies .testimony-form-wrap .form-control {
   background: transparent;
   border: 0;
   border-bottom: 1px solid var(--rule);
@@ -329,21 +329,21 @@
   font-family: "Newsreader", serif;
 }
 
-.testimony-form-wrap .form-control:focus {
+#testimonies .testimony-form-wrap .form-control:focus {
   box-shadow: none;
   border-color: var(--accent);
 }
 
-.testimony-form-wrap .form-control::placeholder {
+#testimonies .testimony-form-wrap .form-control::placeholder {
   color: rgba(44, 36, 24, 0.35);
   font-style: italic;
 }
 
-.testimony-form-wrap .text-muted {
+#testimonies .testimony-form-wrap .text-muted {
   color: var(--ink-soft) !important;
 }
 
-.testimony-submit {
+#testimonies .testimony-submit {
   background: transparent;
   border: 1px solid var(--ink);
   color: var(--ink);
@@ -355,7 +355,7 @@
   margin-top: 0.5rem;
 }
 
-.testimony-submit:hover {
+#testimonies .testimony-submit:hover {
   background: var(--ink);
   color: var(--paper);
 }

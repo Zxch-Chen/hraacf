@@ -1,17 +1,10 @@
-import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/+esm';
-
-env.allowLocalModels = false;
-env.useBrowserCache = true;
-
 const MIN_SCORE = 0.3;
 const SEARCH_URL = '/api/search-index';
 
 const input = document.getElementById('testimony-search');
 const statusEl = document.getElementById('testimony-search-status');
 
-if (!input || !statusEl) {
-  // Page without the search field.
-} else {
+if (input && statusEl) {
   let debounceTimer = 0;
   let requestSeq = 0;
   let extractorPromise = null;
@@ -127,7 +120,11 @@ if (!input || !statusEl) {
 
   function loadExtractor() {
     if (!extractorPromise) {
-      extractorPromise = pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+      extractorPromise = import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/+esm').then(function(mod) {
+        mod.env.allowLocalModels = false;
+        mod.env.useBrowserCache = true;
+        return mod.pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+      });
     }
     return extractorPromise;
   }

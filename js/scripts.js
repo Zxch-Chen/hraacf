@@ -181,59 +181,113 @@
     }
   };
 
-  $.getJSON('js/testimonies.json').done(function(items) {
-    testimonies = items || [];
-    syncTestimonyView();
-  });
+  var testimoniesStarted = false;
 
-  window.hraacfTestimonies = {
-    ready: function() {
-      return testimonies.length > 0;
-    },
-    all: function() {
-      return testimonies.slice();
-    },
-    filterTo: function(urls) {
-      if (urls === null) {
-        filteredTestimonies = null;
-      } else {
-        filteredTestimonies = [];
-        $.each(urls, function(_, url) {
-          $.each(testimonies, function(__, item) {
-            if (item.url === url) {
-              filteredTestimonies.push(item);
-              return false;
-            }
-          });
-        });
-      }
-      if (!testimonySlug()) {
-        showTestimonyList();
-      }
-    }
-  };
-
-  $('#testimony-list').on('click', 'a.testimony-row', function(event) {
-    event.preventDefault();
-    if (location.hash !== this.hash) {
-      history.pushState(null, '', this.hash);
-    }
-    syncTestimonyView();
-  });
-
-  $(window).on('hashchange popstate', syncTestimonyView);
-
-  $('#testimony-form').on('submit', function(event) {
-    var url = ($('#testimony-url').val() || '').trim();
-    var $error = $('#testimony-form-error');
-    var isSubstack = /^https:\/\/([a-z0-9-]+\.)?substack\.com\//i.test(url);
-    if (!isSubstack) {
-      event.preventDefault();
-      $error.text('Please use a Substack URL (https://….substack.com/p/…).').prop('hidden', false);
+  var loadTestimoniesFonts = function() {
+    if (document.getElementById('testimonies-fonts')) {
       return;
     }
-    $error.prop('hidden', true);
+    var link = document.createElement('link');
+    link.id = 'testimonies-fonts';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Newsreader:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap';
+    document.head.appendChild(link);
+  };
+
+  var loadTestimoniesSearch = function() {
+    if (document.querySelector('script[data-testimonies-search]')) {
+      return;
+    }
+    var script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'js/testimonies-search.js';
+    script.setAttribute('data-testimonies-search', '1');
+    document.body.appendChild(script);
+  };
+
+  var startTestimonies = function() {
+    if (testimoniesStarted) {
+      return;
+    }
+    testimoniesStarted = true;
+    loadTestimoniesFonts();
+    loadTestimoniesSearch();
+    window.hraacfTestimonies = {
+      ready: function() {
+        return testimonies.length > 0;
+      },
+      all: function() {
+        return testimonies.slice();
+      },
+      filterTo: function(urls) {
+        if (urls === null) {
+          filteredTestimonies = null;
+        } else {
+          filteredTestimonies = [];
+          $.each(urls, function(_, url) {
+            $.each(testimonies, function(__, item) {
+              if (item.url === url) {
+                filteredTestimonies.push(item);
+                return false;
+              }
+            });
+          });
+        }
+        if (!testimonySlug()) {
+          showTestimonyList();
+        }
+      }
+    };
+    $('#testimony-list').on('click', 'a.testimony-row', function(event) {
+      event.preventDefault();
+      if (location.hash !== this.hash) {
+        history.pushState(null, '', this.hash);
+      }
+      syncTestimonyView();
+    });
+    $('#testimony-form').on('submit', function(event) {
+      var url = ($('#testimony-url').val() || '').trim();
+      var $error = $('#testimony-form-error');
+      var isSubstack = /^https:\/\/([a-z0-9-]+\.)?substack\.com\//i.test(url);
+      if (!isSubstack) {
+        event.preventDefault();
+        $error.text('Please use a Substack URL (https://….substack.com/p/…).').prop('hidden', false);
+        return;
+      }
+      $error.prop('hidden', true);
+    });
+    $.getJSON('js/testimonies.json').done(function(items) {
+      testimonies = items || [];
+      syncTestimonyView();
+    });
+  };
+
+  var wantsTestimonies = function() {
+    return (location.hash || '').indexOf('#testimonies') === 0;
+  };
+
+  if (wantsTestimonies()) {
+    startTestimonies();
+  }
+  $('a[href^="#testimonies"]').on('click', startTestimonies);
+  $(window).on('hashchange popstate', function() {
+    if (wantsTestimonies()) {
+      startTestimonies();
+    }
+    if (testimoniesStarted) {
+      syncTestimonyView();
+    }
   });
+  var testimoniesSection = document.getElementById('testimonies');
+  if (testimoniesSection && 'IntersectionObserver' in window) {
+    var testimoniesObserver = new IntersectionObserver(function(entries) {
+      if (entries.some(function(entry) { return entry.isIntersecting; })) {
+        startTestimonies();
+        testimoniesObserver.disconnect();
+      }
+    }, { rootMargin: '120px' });
+    testimoniesObserver.observe(testimoniesSection);
+  }
 
   // Magnific popup calls
   $('#portfolio').magnificPopup({
