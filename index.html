@@ -178,6 +178,12 @@
                 <p class="testimonies-lede">
                     A small index of faith, written in our community. Open a piece to read it here.
                 </p>
+                <div class="testimony-search">
+                    <label for="testimony-search">What are you facing?</label>
+                    <input id="testimony-search" type="search" autocomplete="off" spellcheck="false"
+                        placeholder="startup and dropping out">
+                    <p id="testimony-search-status" class="testimony-search-status" aria-live="polite"></p>
+                </div>
             </header>
             <div id="testimony-list" class="testimony-list">
                 <a class="testimony-row" href="#testimonies/the-idolatry-of-faith">
@@ -470,6 +476,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <script type="module" src="js/testimonies-search.js"></script>
 </body>
 
 </html>

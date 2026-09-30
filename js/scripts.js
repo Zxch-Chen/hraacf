@@ -65,6 +65,7 @@
 
   // Catalog first. The Substack RSS body loads only after someone opens a row.
   var testimonies = [];
+  var filteredTestimonies = null;
 
   var slugFromUrl = function(url) {
     var match = (url || '').match(/\/p\/([a-z0-9-]+)/i);
@@ -93,9 +94,16 @@
       .append($('<span class="testimony-row-meta"/>').text(item.author + ' · ' + item.date));
   };
 
+  var visibleTestimonies = function() {
+    if (filteredTestimonies === null) {
+      return testimonies;
+    }
+    return filteredTestimonies;
+  };
+
   var showTestimonyList = function() {
     var $list = $('#testimony-list').empty().show();
-    $.each(testimonies, function(index, item) {
+    $.each(visibleTestimonies(), function(index, item) {
       $list.append(renderTestimonyRow(item, index));
     });
     $('#testimony-detail').attr('hidden', true).empty();
@@ -177,6 +185,33 @@
     testimonies = items || [];
     syncTestimonyView();
   });
+
+  window.hraacfTestimonies = {
+    ready: function() {
+      return testimonies.length > 0;
+    },
+    all: function() {
+      return testimonies.slice();
+    },
+    filterTo: function(urls) {
+      if (urls === null) {
+        filteredTestimonies = null;
+      } else {
+        filteredTestimonies = [];
+        $.each(urls, function(_, url) {
+          $.each(testimonies, function(__, item) {
+            if (item.url === url) {
+              filteredTestimonies.push(item);
+              return false;
+            }
+          });
+        });
+      }
+      if (!testimonySlug()) {
+        showTestimonyList();
+      }
+    }
+  };
 
   $('#testimony-list').on('click', 'a.testimony-row', function(event) {
     event.preventDefault();
